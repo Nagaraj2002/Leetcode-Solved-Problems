@@ -4,29 +4,33 @@
 using namespace std;
 
 // } Driver Code Ends
+
 // User function Template for C++
 class Solution {
   public:
-    long long int nthFibonacci(long long int n){
+    int nthFibonacci(int n){
         // code here
-        int mod = 1000000007;
-        long long int a=0;
-        long long int b=1;
-        for(long long int i=2;i<=n;i++){
-            long long  ans=(a+b)%mod;
-            a=b;
-            b=ans;
+        if(n<3) return 1;
+        n-=2;
+        int a=1,b=1;
+        while(n--){
+            b%=1000000007;
+            a%=1000000007;
+            int t=b;
+            b+=a;
+            a=t;
         }
-        return b;
+        return b%1000000007;
     }
 };
+
 
 //{ Driver Code Starts.
 int main() {
     int t;
     cin >> t;
     while (t--) {
-        long long int n;
+        int n;
         cin >> n;
         Solution ob;
         cout << ob.nthFibonacci(n) << endl;
